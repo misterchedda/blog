@@ -1,4 +1,6 @@
+import Image from 'next/image'
 import Link from 'next/link'
+
 
 const navItems = {
   '/': {
@@ -7,8 +9,8 @@ const navItems = {
   '/blog': {
     name: 'blog',
   },
-  'https://vercel.com/templates/next.js/portfolio-starter-kit': {
-    name: 'deploy',
+  '/about': {
+    name: 'about',
   },
 }
 
@@ -20,7 +22,10 @@ export function Navbar() {
           className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
         >
+          
           <div className="flex flex-row space-x-0 pr-10">
+          <Image src="/icons/cheese.png" alt="cheese" width={50} height={15} className="mr-4" />
+
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
