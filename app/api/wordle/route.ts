@@ -10,6 +10,14 @@ interface WordleEntry {
   variant: string;
 }
 
+function formatTimeRemaining(milliseconds: number): string {
+  const hours = Math.floor(milliseconds / (1000 * 60 * 60));
+  const minutes = Math.floor((milliseconds % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((milliseconds % (1000 * 60)) / 1000);
+  
+  return `${hours}h ${minutes}m ${seconds}s`;
+}
+
 function parseCSV(): WordleEntry[] {
   const csvPath = join(process.cwd(), 'wordle.csv');
   const csvContent = readFileSync(csvPath, 'utf-8');
@@ -21,7 +29,7 @@ function parseCSV(): WordleEntry[] {
   return dataLines.map(line => {
     const [dateStr, word, sponsoredStr, sponsor, variant] = line.split(',');
     
-    // Parse date from "10 October 2025" format to "2025-10-10"
+    // Parse date to "2025-10-10"
     const dateParts = dateStr.trim().match(/(\d+)\s+(\w+)\s+(\d+)/);
     if (!dateParts) {
       throw new Error(`Invalid date format: ${dateStr}`);
@@ -68,12 +76,23 @@ export async function GET() {
       selectedEntry = wordleData[index];
     }
     
+    // Calculate time until next puzzle (midnight)
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    const timeUntilNext = tomorrow.getTime() - now.getTime();
+    
     const response = {
       date: dateString,
       word: selectedEntry.word,
       sponsored: selectedEntry.sponsored,
       sponsor: selectedEntry.sponsor,
       variant: selectedEntry.variant,
+      nextPuzzleIn: {
+        milliseconds: timeUntilNext,
+        seconds: Math.floor(timeUntilNext / 1000),
+        formatted: formatTimeRemaining(timeUntilNext)
+      }
     };
     
     return NextResponse.json(response);
