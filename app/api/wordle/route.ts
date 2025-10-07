@@ -68,12 +68,13 @@ export async function GET() {
     
     // Find entry matching today's date
     let selectedEntry = wordleData.find(entry => entry.date === dateString);
+    let puzzleIndex = wordleData.findIndex(entry => entry.date === dateString);
     
     // If no match, cycle through available entries based on day
     if (!selectedEntry) {
       const daysSinceEpoch = Math.floor(now.getTime() / (1000 * 60 * 60 * 24));
-      const index = daysSinceEpoch % wordleData.length;
-      selectedEntry = wordleData[index];
+      puzzleIndex = daysSinceEpoch % wordleData.length;
+      selectedEntry = wordleData[puzzleIndex];
     }
     
     // Calculate time until next puzzle (midnight)
@@ -84,6 +85,7 @@ export async function GET() {
     
     const response = {
       date: dateString,
+      puzzleNumber: puzzleIndex + 1,
       word: selectedEntry.word,
       sponsored: selectedEntry.sponsored,
       sponsor: selectedEntry.sponsor,
