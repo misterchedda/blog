@@ -161,6 +161,24 @@ const youtubeVideos: YouTubeVideo[] = [
     views: '90K',
     title: 'Cyberpunk 2077 Top Mods',
   },
+  {
+    videoId: 'z3aWIMqRJM8',
+    url: 'https://www.youtube.com/watch?v=z3aWIMqRJM8',
+    views: '270K',
+    title: '5 Mods to Completely Overhaul Cyberpunk 2077',
+  },
+  {
+    videoId: 'ztPtb7xREJE',
+    url: 'https://www.youtube.com/watch?v=ztPtb7xREJE',
+    views: '50K',
+    title: 'Cyberpunk 2077 Mods That Gives Me The Urge To Touch Grass',
+  },
+  {
+    videoId: 'w1fbzFqwoac',
+    url: 'https://www.youtube.com/watch?v=w1fbzFqwoac',
+    views: '25K',
+    title: 'These Mods will make your Cyberpunk 2077 Experience COMPLETE!',
+  },
 ]
 
 export default function MediaPage() {
