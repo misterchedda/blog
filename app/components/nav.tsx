@@ -9,6 +9,9 @@ const navItems = {
   '/about': {
     name: 'about',
   },
+  '/media': {
+    name: 'media',
+  },
 }
 
 export function Navbar() {
