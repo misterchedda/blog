@@ -53,9 +53,9 @@ export function FeaturedMods() {
           key={index}
           className="featured-mod-outline group hover:opacity-95 transition-opacity overflow-hidden"
         >
-          <div className="flex flex-col md:flex-row">
+          <div className="flex flex-row">
             {/* Image - 16:9 aspect ratio */}
-            <div className="relative w-full md:w-80 aspect-video bg-neutral-100 dark:bg-neutral-900 flex-shrink-0">
+            <div className="relative w-32 sm:w-48 md:w-80 aspect-video bg-neutral-100 dark:bg-neutral-900 flex-shrink-0">
               <Image
                 src={mod.image}
                 alt={mod.name}
@@ -65,33 +65,33 @@ export function FeaturedMods() {
             </div>
 
             {/* Content */}
-            <div className="flex-1 p-5">
+            <div className="flex-1 p-3 sm:p-5 min-w-0">
               <div className="flex items-start justify-between gap-4 mb-3">
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base sm:text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1 break-words">
                     {mod.name}
                   </h3>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 italic">
+                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 italic break-words">
                     {mod.tagline}
                   </p>
                 </div>
               </div>
 
               {/* Stats */}
-              <div className="flex gap-4 mb-3">
-                <div className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex gap-2 sm:gap-4 mb-3 flex-wrap">
+                <div className="flex items-center gap-1 sm:gap-1.5">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-neutral-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
-                  <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 whitespace-nowrap">
                     {mod.downloads}
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-1 sm:gap-1.5">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-neutral-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                   </svg>
-                  <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 whitespace-nowrap">
                     {mod.endorsements}
                   </span>
                 </div>
@@ -100,7 +100,7 @@ export function FeaturedMods() {
               {/* Description */}
               <div className="relative">
                 <p
-                  className={`text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed ${
+                  className={`text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed break-words ${
                     expandedIndex === index ? '' : 'line-clamp-2'
                   }`}
                 >
@@ -108,7 +108,7 @@ export function FeaturedMods() {
                 </p>
                 <button
                   onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                  className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 mt-2 transition-colors"
+                  className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 mt-2 transition-colors"
                 >
                   {expandedIndex === index ? 'Show less' : 'Read more'}
                 </button>
@@ -119,7 +119,7 @@ export function FeaturedMods() {
                 href={mod.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 mt-4 text-sm text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors"
+                className="inline-flex items-center gap-1.5 mt-4 text-xs sm:text-sm text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors break-words"
               >
                 View on {mod.url.includes('github') ? 'GitHub' : 'Nexus Mods'}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
