@@ -25,7 +25,7 @@ const featuredMods: FeaturedMod[] = [
   },
   {
     name: 'Responsive V',
-    tagline: 'Dynamic NPC reactions: what you wear, drive, and do matters',
+    tagline: 'V reacts to open-world events and Johnny',
     description: 'Addressed the "silent protagonist" problem by making V actually respond to world events using unused voice lines already in the game files. Built an escalation system so reactions intensify naturally - light bumps get grunts, repeated harassment gets the finger. Turns player character from passive camera into someone who exists in Night City.',
     image: '/images/featured-mods/responsivev.png',
     downloads: '130K+',
@@ -35,7 +35,7 @@ const featuredMods: FeaturedMod[] = [
   {
     name: 'Nitrous',
     tagline: 'NOS system with immersive integration into Night City',
-    description: 'Architected a universal vehicle boost system that automatically supports 100+ vanilla and modded vehicles with zero configuration. Built proper game state integration (exhaust VFX on existing hardpoints, designed immersive HUD widgets) and exposed a full tuning API via tweak records.',
+    description: 'Architected a universal vehicle boost system that automatically supports 100+ vanilla and modded vehicles with zero configuration. Built proper game state integration including exhaust VFX on existing hardpoints, designed immersive HUD widgets, and exposed a full tuning API via tweak records.',
     image: '/images/featured-mods/nitrous.png',
     downloads: '60K+',
     endorsements: '500+',
