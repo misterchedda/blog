@@ -154,6 +154,11 @@ table {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding: 0.875rem;
+  transition: transform 0.2s ease;
+}
+
+.post-outline:hover {
+  transform: translate(1px, -1px);
 }
 
 .featured-mod-outline {
@@ -175,4 +180,13 @@ table {
   .featured-mod-outline::before {
     filter: invert(1);
   }
+}
+
+/* Custom Cursors */
+* {
+  cursor: url('/icons/cursor.png') 0 0, auto;
+}
+
+a, button, [role="button"], input[type="submit"], input[type="button"], .group, .post-outline, .post-outline * {
+  cursor: url('/icons/cursor_link.png') 0 0, pointer !important;
 }
