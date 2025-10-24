@@ -51,7 +51,7 @@ export function FeaturedMods() {
       {featuredMods.map((mod, index) => (
         <div
           key={index}
-          className="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-all"
+          className="featured-mod-outline group hover:opacity-95 transition-opacity overflow-hidden"
         >
           <div className="flex flex-col md:flex-row">
             {/* Image - 16:9 aspect ratio */}
