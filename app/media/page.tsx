@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { baseUrl } from 'app/sitemap'
-import image from 'next/image'
 
 export const metadata = {
   title: 'Media Mentions',
@@ -23,6 +22,13 @@ interface MediaMention {
   logo?: string
   image?: string
   invertLogo?: boolean
+}
+
+interface YouTubeVideo {
+  videoId: string
+  url: string
+  views: string
+  title?: string
 }
 
 const mediaMentions: MediaMention[] = [
@@ -92,6 +98,63 @@ const mediaMentions: MediaMention[] = [
     title: 'Cyberpunk 2077 mod makes Night City much more immersive',
     url: 'https://www.pcgamesn.com/cyberpunk-2077/immersive-npc-mod',
     image: 'https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/07/cyberpunk-2077-immersive-npc-mod.jpg'
+  },
+]
+
+const youtubeVideos: YouTubeVideo[] = [
+  {
+    videoId: 'nP1Wk7oalmU',
+    url: 'https://www.youtube.com/watch?v=nP1Wk7oalmU',
+    views: '170K',
+    title: 'Top 10 Cyberpunk Mods',
+  },
+  {
+    videoId: '-Agc4M-noRk',
+    url: 'https://youtu.be/-Agc4M-noRk?t=724',
+    views: '370K',
+    title: 'Best Cyberpunk 2077 Mods',
+  },
+  {
+    videoId: 'eZOcREa0AKQ',
+    url: 'https://youtu.be/eZOcREa0AKQ?t=531',
+    views: '270K',
+    title: 'Must-Have Cyberpunk Mods',
+  },
+  {
+    videoId: 'Cvx228_Joa4',
+    url: 'https://youtu.be/Cvx228_Joa4?t=1115',
+    views: '860K',
+    title: 'Essential Cyberpunk 2077 Mods',
+  },
+  {
+    videoId: 'knK4F-CPEe8',
+    url: 'https://youtu.be/knK4F-CPEe8?t=145',
+    views: '175K',
+    title: 'Cyberpunk 2077 Mods You Need',
+  },
+  {
+    videoId: 'h_KUgAJlUuo',
+    url: 'https://www.youtube.com/watch?v=h_KUgAJlUuo&t=167s',
+    views: '150K',
+    title: 'Top Cyberpunk Mods',
+  },
+  {
+    videoId: 'QutYjXd96ZU',
+    url: 'https://www.youtube.com/watch?v=QutYjXd96ZU&t=268s',
+    views: '30K',
+    title: 'Best Mods for Cyberpunk',
+  },
+  {
+    videoId: 'ATbt2j0SfZo',
+    url: 'https://youtu.be/ATbt2j0SfZo?t=766',
+    views: '202K',
+    title: 'Cyberpunk Mods Guide',
+  },
+  {
+    videoId: 'MFnL0ZjIpUY',
+    url: 'https://youtu.be/MFnL0ZjIpUY?t=536',
+    views: '90K',
+    title: 'Cyberpunk 2077 Top Mods',
   },
 ]
 
@@ -166,6 +229,66 @@ export default function MediaPage() {
             </div>
           </a>
         ))}
+      </div>
+
+      {/* YouTube Videos Section */}
+      <div className="mt-16">
+        <h2 className="mb-2 text-2xl font-semibold tracking-tighter">
+          YouTube Features
+        </h2>
+        <p className="mb-8 text-neutral-600 dark:text-neutral-400">
+          My mods featured on YouTube
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {youtubeVideos.map((video, index) => (
+            <a
+              key={index}
+              href={video.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+            >
+              <div className="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-sm">
+                <div className="relative w-full aspect-video bg-neutral-100 dark:bg-neutral-900">
+                  <Image
+                    src={`https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`}
+                    alt={video.title || 'YouTube video'}
+                    fill
+                    className="object-cover"
+                  />
+                  {/* Play button overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-50 opacity-0 transition-opacity">
+                    <div className="w-8 h-8 opacity-70 bg-red-600 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <svg className="w-5 h-5 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    <span className="text-sm text-neutral-500 dark:text-neutral-400 font-medium">
+                      {video.views} views
+                    </span>
+                  </div>
+                  {video.title && (
+                    <p className="text-neutral-900 dark:text-neutral-100 text-sm font-medium leading-snug group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
+                      {video.title}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
 
       <div className="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-800">

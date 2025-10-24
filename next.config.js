@@ -42,6 +42,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.pcgamesn.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
     ],
   },
 }
