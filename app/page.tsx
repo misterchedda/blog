@@ -8,9 +8,6 @@ export default function Page() {
         MisterChedda
       </h1> */}
       {/* <Image src="/icons/cheese.png" alt="cheese" width={100} height={100} className="mb-8" /> */}
-      <p className="mb-4">
-        {`Documenting game dev learnings`}
-      </p>
       <div className="my-8">
         <BlogPosts />
       </div>
