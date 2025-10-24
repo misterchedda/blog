@@ -172,7 +172,7 @@ export default function MediaPage() {
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           Check out my mods on{' '}
           <a
-            href="https://www.nexusmods.com/users/25234435?tab=user+files"
+            href="https://next.nexusmods.com/profile/MisterChedda/mods"
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
