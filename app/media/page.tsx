@@ -180,7 +180,7 @@ export default function MediaPage() {
             href={mention.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block group"
+            className="block group media-card"
           >
             <div className="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-sm">
               {mention.image && (
@@ -252,7 +252,7 @@ export default function MediaPage() {
               href={video.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block group"
+              className="block group media-card"
             >
               <div className="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-sm">
                 <div className="relative w-full aspect-video bg-neutral-100 dark:bg-neutral-900">

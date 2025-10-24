@@ -187,6 +187,6 @@ table {
   cursor: url('/icons/cursor.png') 0 0, auto;
 }
 
-a, button, [role="button"], input[type="submit"], input[type="button"], .group, .post-outline, .post-outline * {
+a, button, [role="button"], input[type="submit"], input[type="button"], .group, .post-outline, .post-outline *, .media-card, .media-card * {
   cursor: url('/icons/cursor_link.png') 0 0, pointer !important;
 }
