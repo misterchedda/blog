@@ -1,5 +1,24 @@
 import { BlogPosts } from 'app/components/posts'
 import { FeaturedMods } from 'app/components/featured-mods'
+import { baseUrl } from 'app/sitemap'
+
+export const metadata = {
+  title: "misterchedda's blog",
+  description: "Modder and tools developer. Built quest/scene editors for WolvenKit and created mods with 2M+ unique downloads for Cyberpunk 2077.",
+  openGraph: {
+    title: "misterchedda's blog",
+    description: "Modder and tools developer. Built quest/scene editors for WolvenKit and created mods with 2M+ unique downloads for Cyberpunk 2077.",
+    url: baseUrl,
+    siteName: "misterchedda's blog",
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "misterchedda's blog",
+    description: "Modder and tools developer. Built quest/scene editors for WolvenKit and created mods with 2M+ unique downloads for Cyberpunk 2077.",
+  },
+}
 
 export default function Page() {
   return (

@@ -12,6 +12,11 @@ export const metadata = {
     locale: 'en_US',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Media Mentions',
+    description: 'Featured coverage of my Cyberpunk 2077 mods across gaming news sites',
+  },
 }
 
 interface MediaMention {
