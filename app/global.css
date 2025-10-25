@@ -206,3 +206,14 @@ table {
 a, button, [role="button"], input[type="submit"], input[type="button"], .group, .post-outline, .post-outline *, .media-card, .media-card * {
   cursor: url('/icons/cursor_link.png') 0 0, pointer !important;
 }
+
+/* Mobile-specific font size reduction for post items */
+@media (max-width: 639px) {
+  .post-outline p {
+    font-size: 0.8125rem; /* Slightly smaller than text-sm */
+  }
+  
+  .post-outline p.text-xs {
+    font-size: 0.6875rem; /* Slightly smaller than text-xs */
+  }
+}
