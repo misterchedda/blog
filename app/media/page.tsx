@@ -264,19 +264,62 @@ export default function MediaPage() {
           What players are saying
         </p>
         
-        <div className="flex justify-center">
-          <blockquote className="twitter-tweet">
-            <p lang="en" dir="ltr">
-              I have over 150 Cyberpunk mods installed and by far the best one is one that periodically texts me cat facts{' '}
-              <a href="https://t.co/mX9gEAaFL9">pic.twitter.com/mX9gEAaFL9</a>
-            </p>
-            &mdash; FPSthetics (@FPSthetics){' '}
-            <a href="https://twitter.com/FPSthetics/status/1984814191669088286?ref_src=twsrc%5Etfw">
-              November 2, 2025
-            </a>
-          </blockquote>
+        <div className="space-y-8">
+          <div className="flex justify-center">
+            <blockquote className="twitter-tweet">
+              <p lang="en" dir="ltr">
+                I have over 150 Cyberpunk mods installed and by far the best one is one that periodically texts me cat facts{' '}
+                <a href="https://t.co/mX9gEAaFL9">pic.twitter.com/mX9gEAaFL9</a>
+              </p>
+              &mdash; FPSthetics (@FPSthetics){' '}
+              <a href="https://twitter.com/FPSthetics/status/1984814191669088286?ref_src=twsrc%5Etfw">
+                November 2, 2025
+              </a>
+            </blockquote>
+          </div>
+          
+          <div className="flex justify-center">
+            <blockquote className="reddit-embed-bq" style={{height: '500px'}} data-embed-height="500">
+              <a href="https://www.reddit.com/r/LowSodiumCyberpunk/comments/1cnaubs/i_made_a_mod_that_adds_combat_mode_to_delamain/">
+                I made a mod that adds combat mode to Delamain cars
+              </a><br/> by
+              <a href="https://www.reddit.com/user/misterchedda/">u/misterchedda</a> in
+              <a href="https://www.reddit.com/r/LowSodiumCyberpunk/">LowSodiumCyberpunk</a>
+            </blockquote>
+          </div>
+          
+          <div className="flex justify-center">
+            <blockquote className="reddit-embed-bq" style={{height: '500px'}} data-embed-height="500">
+              <a href="https://www.reddit.com/r/cyberpunkgame/comments/1jw2afa/i_think_i_found_the_max_speed/">
+                I think I found the max speed
+              </a><br/> by
+              <a href="https://www.reddit.com/user/misterchedda/">u/misterchedda</a> in
+              <a href="https://www.reddit.com/r/cyberpunkgame/">cyberpunkgame</a>
+            </blockquote>
+          </div>
+          
+          <div className="flex justify-center">
+            <blockquote className="reddit-embed-bq" style={{height: '500px'}} data-embed-height="500">
+              <a href="https://www.reddit.com/r/LowSodiumCyberpunk/comments/1jwayan/i_made_a_mod_that_adds_nos_to_all_vehicles/">
+                I made a mod that adds NOS to all vehicles
+              </a><br/> by
+              <a href="https://www.reddit.com/user/misterchedda/">u/misterchedda</a> in
+              <a href="https://www.reddit.com/r/LowSodiumCyberpunk/">LowSodiumCyberpunk</a>
+            </blockquote>
+          </div>
+          
+          <div className="flex justify-center">
+            <blockquote className="reddit-embed-bq" style={{height: '500px'}} data-embed-height="500">
+              <a href="https://www.reddit.com/r/LowSodiumCyberpunk/comments/1m6ojoj/this_mod_creator_is_a_legend_for_having_done_that/">
+                This mod creator is a legend for having done that
+              </a><br/> by
+              <a href="https://www.reddit.com/user/misterchedda/">u/misterchedda</a> in
+              <a href="https://www.reddit.com/r/LowSodiumCyberpunk/">LowSodiumCyberpunk</a>
+            </blockquote>
+          </div>
         </div>
         <Script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
+        <Script async src="https://embed.reddit.com/widgets.js" charSet="UTF-8" />
       </div>
 
       {/* YouTube Videos Section */}
