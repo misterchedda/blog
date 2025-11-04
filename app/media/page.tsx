@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Script from 'next/script'
 import { baseUrl } from 'app/sitemap'
 
 export const metadata = {
@@ -252,6 +253,30 @@ export default function MediaPage() {
             </div>
           </a>
         ))}
+      </div>
+
+      {/* Tweet Section */}
+      <div className="mt-16">
+        <h2 className="mb-2 text-2xl font-semibold tracking-tighter">
+          Community Highlights
+        </h2>
+        <p className="mb-8 text-neutral-600 dark:text-neutral-400">
+          What players are saying
+        </p>
+        
+        <div className="flex justify-center">
+          <blockquote className="twitter-tweet">
+            <p lang="en" dir="ltr">
+              I have over 150 Cyberpunk mods installed and by far the best one is one that periodically texts me cat facts{' '}
+              <a href="https://t.co/mX9gEAaFL9">pic.twitter.com/mX9gEAaFL9</a>
+            </p>
+            &mdash; FPSthetics (@FPSthetics){' '}
+            <a href="https://twitter.com/FPSthetics/status/1984814191669088286?ref_src=twsrc%5Etfw">
+              November 2, 2025
+            </a>
+          </blockquote>
+        </div>
+        <Script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
       </div>
 
       {/* YouTube Videos Section */}
