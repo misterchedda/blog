@@ -178,5 +178,5 @@ export const screenshots: Screenshot[] = [
 
 // Helper to get unique games for filtering
 export function getUniqueGames(shots: Screenshot[]): string[] {
-  return [...new Set(shots.map(s => s.game))].sort()
+  return Array.from(new Set(shots.map(s => s.game))).sort()
 }

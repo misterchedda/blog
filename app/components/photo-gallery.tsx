@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, ReactElement } from 'react'
 import Image from 'next/image'
 import { Screenshot } from 'app/virtual-photography/screenshots'
 
@@ -94,7 +94,7 @@ export function PhotoGallery({ screenshots }: PhotoGalleryProps) {
       <div className="space-y-8">
         {Object.entries(gameGroups).map(([game, gameScreenshots]) => {
           // Build dynamic grid with anchor positioning
-          const gridItems: JSX.Element[] = []
+          const gridItems: ReactElement[] = []
           let anchorCount = 0
           
           gameScreenshots.forEach((screenshot, index) => {
