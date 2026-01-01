@@ -6,6 +6,9 @@ const navItems = {
   '/': {
     name: 'home',
   },
+  '/virtual-photography': {
+    name: 'photos',
+  },
   '/media': {
     name: 'media',
   },

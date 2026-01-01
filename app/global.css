@@ -217,3 +217,13 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
     font-size: 0.6875rem; /* Slightly smaller than text-xs */
   }
 }
+
+/* Hide scrollbar for carousel */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
