@@ -7,9 +7,7 @@ summary: 'How I made a voiceover replacer mod for Dispatch (UE4)'
 <img src="/images/dispatch-voiceover-mod/preview.png"/>
 
 
-# Modding Dispatch: A Developer’s Guide to Audio & Text Replacement
-
-I recently [made a mod](https://www.nexusmods.com/dispatch/mods/26) for [Dispatch](https://store.steampowered.com/app/2592160/Dispatch/), (one of my favourite games this year, that you should play if you haven't already). 
+I recently [made a mod](https://www.nexusmods.com/dispatch/mods/26) for [Dispatch](https://store.steampowered.com/app/2592160/Dispatch/) (probably my GOTY - it's really good)
 
 The mod (like maybe most of my mods?) is a silly one - one of the characters in the game, Sonar, is voiced by none other than MoistCr1Tikal
 
@@ -19,13 +17,13 @@ So understandably the modding potential is insane. For the mod I chose a specifi
 
 <img src="https://media1.tenor.com/m/2Ksp9lFxlcUAAAAd/moistcritikal-penguinz0.gif"/>
 
-I've been messing with Unreal for many months as a game dev, but first time as a modder. Dispatch is built with Unreal 4, and unlike Cyberpunk modding - there is no real single mod editor like Wolvenkit for it - it's a bit distributed for reasons I think I understand (there are so many UE games). Regardless apart from having to use 4 or 5 tools, the tools themselves are solid and do what they do well. I decided to write this down for future me and anyone else looking to mod Dispatch. 
+I've been messing with Unreal for months as a game dev, but first time as a modder. Dispatch is built with Unreal 4, and unlike Cyberpunk modding - there is no real single mod editor like Wolvenkit for it - it's a bit distributed for reasons I think I understand (there are SO many UE games). Regardless - apart from having to use 4 or 5 tools, the tools themselves are solid and do what they do well. I decided to write this down for future me and anyone else looking to mod Dispatch. 
 
 I obviously don't know everything and given this is my first UE mod - I'm sure there are better ways to do things (I really just rushed through most of this)
 
 My usual modding disclaimer: This guide assumes you own the game. Support Adhoc Studio - they made something really good.
 
-This guide covers the workflow for replacing Voice Over (VO) and Subtitles in *Dispatch*. The specific example used here modifies a line for the character **Sonar** in **Episode 103**, but the logic applies to all episodes.
+This guide covers the workflow for replacing Voice Over (VO) and Subtitles in Dispatch. The specific example used here modifies a line for the character **Sonar** in **Episode 103**, but the logic applies to all episodes.
 
 ## The Toolkit
 
@@ -108,7 +106,7 @@ Subtitles are stored in `.locres` files.
         ```powershell
         .\repak.exe pack "MyMod" "Dispatch_Mod_ZZ_Subs_P.pak"
         ```
-    *   *Note*: The `_ZZ` suffix forces your mod to load last, overriding the original file.
+    
 4.  **Install**: Place the `.pak` file in `Dispatch\Content\Paks`.
 
 ---
@@ -117,6 +115,6 @@ Subtitles are stored in `.locres` files.
 
 Launch the game. Use the **Dispatch Debug Menu** mod to help speed up testing and jump directly to the Shift/Episode you modified.
 
-And that's it! Happy modding.
+And that's it! You can use the same principle to replace any VO or subtitle (or for that matter, any asset) in the game. I want to also try modding Blueprints but that's for another day. Happy modding!
 
 <img src="/images/dispatch-voiceover-mod/sdn.png"/>
