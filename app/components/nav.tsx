@@ -24,7 +24,7 @@ export function Navbar() {
         >
           
           <div className="flex flex-row space-x-0 pr-10">
-          <Image src="/icons/cheese.png" alt="cheese" width={50} height={15} className="mr-4" />
+          <Image src="/icons/cheese.png" alt="cheese" width={70} height={15} className="mr-4" />
 
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
