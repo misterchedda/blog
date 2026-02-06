@@ -2,7 +2,6 @@ import './global.css'
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
-import { Navbar } from './components/nav'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
@@ -11,15 +10,15 @@ import { baseUrl } from './sitemap'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "misterchedda's blog",
-    template: '%s | blog',
+    default: "MisterChedda | Dev Workspace",
+    template: '%s | MisterChedda',
   },
-  description: "documenting game dev, modding, and other things",
+  description: "Creator, developer, and modder. Building The Third Rail - a cooperative horror extraction shooter.",
   openGraph: {
-    title: "misterchedda's blog",
-    description: "documenting game dev, modding, and other things",
+    title: "MisterChedda | Dev Workspace",
+    description: "Creator, developer, and modder. Building The Third Rail - a cooperative horror extraction shooter.",
     url: baseUrl,
-    siteName: "misterchedda's blog",
+    siteName: "MisterChedda",
     locale: 'en_US',
     type: 'website',
   },
@@ -57,14 +56,13 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        'text-black bg-white dark:text-white dark:bg-black',
+        'text-black bg-paper',
         GeistSans.variable,
         GeistMono.variable
       )}
     >
-      <body className="min-h-screen flex flex-col antialiased max-w-xl mx-4 mt-8 md:mx-auto">
-        <main className="flex-1 min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          <Navbar />
+      <body className="min-h-screen flex flex-col antialiased">
+        <main className="flex-1 min-w-0 flex flex-col p-4 md:p-8">
           {children}
         </main>
         <Footer />
