@@ -1,0 +1,212 @@
+---
+title: 'Accidentally Making Unreal Engine Modding-Friendly'
+publishedAt: '2026-01-15'
+summary: 'How a git diff problem turned into a zero-config modding framework for Unreal Engine 5'
+---
+
+In the process of building levels and designing environments for a game I'm working on in Unreal, I ran into something annoying: tweaking fog density, skylight intensity, and the 100 other environment and lighting params there are - meant editing actors in the level, which writes to the binary .umap file. This means git diffs look like garbage - you can't tell what changed, can't review lighting tweaks between commits, can't track "oh I randomly made the fog thicker yesterday for some reason."
+
+I kept thinking about how other games handle this. When I was modding Cyberpunk 2077, environment and lighting settings lived in `.envparam` files which are just key-value text. You could open them, see exactly what controlled what, tweak a value, reload - very simple and made perfect sense, after all why would you want this hidden away?
+
+My first instinct was to build something in C++ that would manage environment state as a custom struct and just serialize it out. But the more I thought about it, the more I was like... why not just write it to a plain text INI? Unreal already has `GConfig` and `FConfigFile` for reading and writing INI format. I can ship the INI file loose on disk, not cooked into a .pak which is a nice side effect. It's human-readable, git-diffable, and modders have been cracking open INI files in Notepad since the 90s.
+
+<img src="https://media1.tenor.com/m/rkI1a8s2Z6QAAAAd/todd-howard-it-just-works.gif" alt="It just works" />
+
+What I didn't expect was that solving my git diff problem would accidentally produce a generic modding framework in about 200ish lines of C++.
+
+## The Problem
+
+Unreal stores everything in .umap files. Change your ExponentialHeightFog's density from 0.02 to 0.05? Binary diff. Adjust skylight color? Binary diff.
+
+For a solo/small team indie game where you're iterating on atmosphere constantly, this sucks. I wanted:
+
+- Clean text diffs I could actually read
+- Easy rollback to previous lighting setups
+- Separate file from the level itself
+
+## The Solution
+
+An `AEnvironmentManager` actor that acts as a bridge between the scene actors (SkyLight, ExponentialHeightFog, PostProcessVolume) and a plain text `Config/Environment.ini` file.
+
+So the workflow becomes:
+
+1. Edit the actual actors directly in the level as usual
+2. Save the level (Ctrl+S) - environment settings automatically bake to INI
+3. Commit the INI file - git diff shows exactly what changed
+4. At runtime, BeginPlay loads the INI and applies it to the actors
+
+```ini
+[ExponentialHeightFog]
+FogDensity=0.02
+FogHeightFalloff=0.2
+FogInscatteringColor=(R=0.45,G=0.56,B=0.70,A=1.0)
+
+[SkyLight]
+Intensity=1.0
+LightColor=(R=1.0,G=1.0,B=1.0,A=1.0)
+```
+
+## Zero Manual Serialization
+
+My first pass at this had me writing out each property by hand - `GConfig->SetFloat` for fog density, `GConfig->SetString` for colors, repeat fifty times. It worked, but adding new properties meant touching the serialization code every time.
+
+Then I remembered UE has a **full reflection system** sitting right there.
+
+<img src="https://tenor.com/en-GB/view/marcoelprro-gif-27525382" alt="oopsy" />
+
+`TFieldIterator<FProperty>` lets you walk every reflected property on a UObject. Combine that with type-checking via `CastField` and you get a generic serializer that handles floats, bools, ints, enums, `FLinearColor`, `FColor`, `FVector4`, and even recursive sub-structs - all without writing a single line per property.
+
+```cpp
+static void SaveStructToConfig(FConfigFile& Cfg, const TCHAR* Section,
+    const UStruct* Struct, const void* Data,
+    const UStruct* StopAt = nullptr, const FString& Prefix = TEXT(""))
+{
+    for (TFieldIterator<FProperty> It(Struct); It; ++It)
+    {
+        const FProperty* Prop = *It;
+
+        // Skip properties from base classes we don't care about
+        if (StopAt)
+        {
+            const UStruct* Owner = Prop->GetOwnerStruct();
+            if (Owner && StopAt->IsChildOf(Owner)) continue;
+        }
+
+        const FString Key  = Prefix + Prop->GetName();
+        const void* ValPtr = Prop->ContainerPtrToValuePtr<void>(Data);
+
+        // SaveLeafProperty handles float, bool, int, enum, colors, etc.
+        if (SaveLeafProperty(Cfg, Section, Key, Prop, ValPtr)) continue;
+
+        // Recurse into nested structs
+        if (const FStructProperty* SP = CastField<FStructProperty>(Prop))
+        {
+            SaveStructToConfig(Cfg, Section, SP->Struct, ValPtr,
+                nullptr, Key + TEXT("."));
+        }
+    }
+}
+```
+
+The `StopAt` parameter is key - passing `USceneComponent::StaticClass()` when serializing a fog or skylight component filters out all the transform/tick/base-UObject noise you don't want in your INI so you get just the actual environment properties.
+
+Loading is the mirror image. Walk the properties, check if the key exists in the config, write it back. Colors come out as `(R=0.45,G=0.56,B=0.70,A=1.0)` format natively because that's what UE's reflection produces for `FLinearColor`. And it's human-readable for free.
+
+The result: point this at *any* component and it dumps every reflected property to INI automatically. Point it at the INI and it loads everything back. No manual serialization per property. Add a new `UPROPERTY` to a component and it Just Shows Up.
+
+## The Implementation
+
+The core is straightforward. The manager finds actors via `TActorIterator` (or you can wire them up manually in the editor), and uses `PreSave` to auto-bake to INI whenever you save the level.
+
+```cpp
+UCLASS(Blueprintable)
+class AEnvironmentManager : public AActor
+{
+    UPROPERTY(EditInstanceOnly, Category = "Environment|References")
+    TObjectPtr<ASkyLight> SkyLightActor;
+
+    UPROPERTY(EditInstanceOnly, Category = "Environment|References")
+    TObjectPtr<AExponentialHeightFog> FogActor;
+
+    UPROPERTY(EditInstanceOnly, Category = "Environment|References")
+    TObjectPtr<APostProcessVolume> PostProcessActor;
+
+#if WITH_EDITOR
+    UFUNCTION(CallInEditor, Category = "Environment")
+    void BakeToConfig();    // Actors → INI (manual trigger)
+
+    UFUNCTION(CallInEditor, Category = "Environment")
+    void ApplyFromConfig(); // INI → Actors (reset to baseline)
+
+    virtual void PreSave(FObjectPreSaveContext SaveContext) override;
+#endif
+
+    virtual void BeginPlay() override {
+        FindSceneActors();
+        LoadFromConfig(); // Runtime: always load from INI
+    }
+};
+```
+
+The save/load functions are just three calls to the generic serializer:
+
+```cpp
+bool AEnvironmentManager::SaveToConfig()
+{
+    FConfigFile Cfg;
+
+    if (auto* S = SkyLightActor->GetLightComponent())
+        SaveStructToConfig(Cfg, TEXT("SkyLight"), S->GetClass(), S,
+            USceneComponent::StaticClass());
+
+    if (auto* F = FogActor->GetComponent())
+        SaveStructToConfig(Cfg, TEXT("ExponentialHeightFog"), F->GetClass(), F,
+            USceneComponent::StaticClass());
+
+    // PostProcess settings via reflection too
+    SaveStructToConfig(Cfg, TEXT("PostProcess"),
+        FPostProcessSettings::StaticStruct(), &PostProcessActor->Settings);
+
+    return Cfg.Write(GetConfigFilePath());
+}
+```
+
+That's it. Every reflected property on the fog component, skylight component, and post-process settings - serialized to a human-readable INI with zero per-property code.
+
+**The pattern is flexible** - you could point this at practically anything. Weapon stats, AI behavior params, movement speeds. Any `UPROPERTY` on any `UObject` is fair game. If it's reflected, the generic serializer handles it.
+
+## The Accidental Win: Day-One Modding
+
+So I built this thing to get clean git diffs. Then I realized what I'd actually made.
+
+INI modding is probably the oldest trick in PC gaming. Quake had config files. Half-Life had them. Every Bethesda game since Morrowind has had modders living in `SkyrimPrefs.ini` and `Fallout.ini`. Exposing settings as plain text is the lowest-friction modding surface you can offer, and communities have been doing it for decades. But on UE - there are paid plugins on Fab that basically sell "read and write INI files from Blueprints" as a product - that's how absent this pattern is from the default UE workflow. 
+
+A fundamental difference to this approach is because the serializer is reflection-based, when you ship the game, `Config/Environment.ini` gets included as a plain text file with *every* reflected property already in it. Modders don't need documentation to know what's available - they open the INI and it's all there. And it extends to everything you expose, not just the properties you remembered to manually register.
+
+Want to go further? Add a load order system so that players can layer multiple INIs on top of each other:
+
+```
+Config/
+  Environment.ini          ← your defaults
+Mods/
+  01_DarkerFog/
+    Environment.ini        ← overrides just the keys it cares about
+  02_RedSkylight/
+    Environment.ini
+```
+
+The loader scans `Mods/` alphabetically and applies each INI on top of the base. Since it's key-value, later values just overwrite earlier ones - partial overrides work naturally. A mod that only sets `FogDensity=0.9` doesn't touch skylight settings.
+
+```cpp
+void LoadModdedConfigs(const FString& BaseConfigPath)
+{
+    // Load defaults first
+    LoadFromConfig();
+
+    // Then layer mods on top
+    TArray<FString> ModFiles;
+    IFileManager::Get().FindFilesRecursive(ModFiles,
+        *(FPaths::ProjectDir() + "Mods/"), TEXT("Environment.ini"), true, false);
+
+    ModFiles.Sort(); // alphabetical = load order
+
+    for (const FString& ModFile : ModFiles)
+    {
+        FConfigFile Cfg;
+        Cfg.Read(ModFile);
+        // Apply each mod's overrides to the relevant components...
+    }
+}
+```
+
+That's a Bethesda-style layered override system in about 80 lines total. Reflection serializer + folder scan + last-write-wins. Modders just need Notepad.
+
+-----------
+
+Coming from modding into game dev gives you a weird perspective on game dev.  You notice stuff that people who learned Unreal the "standard" way just accept - like everything being binary, or diffing .umap files in 2026. Modding communities solved this problem before I was born - Quake configs, Bethesda INIs, Source engine convars. Text files. That's it. That's the whole answer.
+
+Unreal's reflection system is powerful enough to get you there, it's just not obvious because the API is buried under five layers of macro hell and nobody talks about TFieldIterator in tutorials. Once you find it though, the serialization basically writes itself. Point it at a component, get an INI. Point the INI back at the component, done.
+
+I built this because I wanted to see what changed in my fog settings between commits. The modding thing was a really nice bonus I only really thought about after the fact. But if you're making something atmospheric - horror, walking sims, anything where you're tweaking lights and fog constantly - it's a pretty nice setup to have. And if people end up modding your game with it, even better.
+
+Planning to open-source this as a drop-in .h/.cpp pair (or maybe a plugin, haven't decided). If that's useful to you, let me know.

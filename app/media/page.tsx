@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Script from 'next/script'
 import { baseUrl } from 'app/sitemap'
+import { Navbar } from 'app/components/nav'
 
 export const metadata = {
   title: 'Media Mentions',
@@ -9,7 +10,7 @@ export const metadata = {
     title: 'Media Mentions',
     description: 'Featured coverage of my Cyberpunk 2077 mods across gaming news sites',
     url: `${baseUrl}/media`,
-    siteName: "misterchedda's blog",
+    siteName: "MisterChedda",
     locale: 'en_US',
     type: 'website',
   },
@@ -184,13 +185,11 @@ const youtubeVideos: YouTubeVideo[] = [
 
 export default function MediaPage() {
   return (
-    <section>
-      <h1 className="mb-2 text-2xl font-semibold tracking-tighter">
-        Media Mentions
-      </h1>
-      <p className="mb-8 text-neutral-600 dark:text-neutral-400">
-        Coverage of my mods across gaming news sites
-      </p>
+    <div className="internal-page">
+      <Navbar />
+      <section className="content-section">
+        <h1 className="page-title">Media Mentions</h1>
+        <p className="page-subtitle">Coverage of my mods across gaming news sites</p>
 
       <div className="space-y-4">
         {mediaMentions.map((mention, index) => (
@@ -395,6 +394,7 @@ export default function MediaPage() {
           </a>
         </p>
       </div>
-    </section>
+      </section>
+    </div>
   )
 }

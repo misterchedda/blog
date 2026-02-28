@@ -1,15 +1,20 @@
 import { BlogPosts } from 'app/components/posts'
+import { Navbar } from 'app/components/nav'
 
 export const metadata = {
-  title: 'Blog',
-  description: 'Read my blog.',
+  title: 'Writeups',
+  description: 'Dev notes, tutorials, and deep dives.',
 }
 
 export default function Page() {
   return (
-    <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>
-      <BlogPosts />
-    </section>
+    <div className="internal-page">
+      <Navbar />
+      <section className="content-section">
+        <h1 className="page-title">Writeups</h1>
+        <p className="page-subtitle">Dev notes and deep dives</p>
+        <BlogPosts />
+      </section>
+    </div>
   )
 }
