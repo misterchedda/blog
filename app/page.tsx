@@ -1,12 +1,14 @@
 import { baseUrl } from 'app/sitemap'
 import Link from 'next/link'
+import { Youtube, Instagram } from 'lucide-react'
+import Image from 'next/image'
 
 export const metadata = {
-  title: "MisterChedda | Dev Workspace",
-  description: "Creator, developer, and modder. Building The Third Rail - a cooperative horror extraction shooter.",
+  title: "MisterChedda",
+  description: "I make games and mods. Building STEALGULLS - a co-op beach chaos game where you and your friends are seagulls on a mission to terrorize beachgoers.",
   openGraph: {
-    title: "MisterChedda | Dev Workspace",
-    description: "Creator, developer, and modder. Building The Third Rail - a cooperative horror extraction shooter.",
+    title: "MisterChedda",
+    description: "I make games and mods. Building STEALGULLS - a co-op beach chaos game where you and your friends are seagulls on a mission to terrorize beachgoers.",
     url: baseUrl,
     siteName: "MisterChedda",
     locale: 'en_US',
@@ -14,168 +16,175 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "MisterChedda | Dev Workspace",
-    description: "Creator, developer, and modder. Building The Third Rail - a cooperative horror extraction shooter.",
+    title: "MisterChedda",
+    description: "I make games and mods. Building STEALGULLS - a co-op beach chaos game where you and your friends are seagulls on a mission to terrorize beachgoers.",
   },
 }
 
 export default function Page() {
   return (
     <div className="workspace-container">
-      {/* MAIN WORKSPACE GRID */}
-      <div className="workspace-grid">
-        {/* LEFT COLUMN (MAIN CONTENT) */}
-        <div className="left-col">
-          
-          {/* TOP ROW: BRAND CARD + HERO CARD */}
-          <div className="hero-row">
-            {/* BRAND CARD */}
-            <section className="module theme-brand">
-              {/* <div className="module-tab">00 // IDENTITY</div> */}
-              <div className="module-content brand-card-content bg-yellow-300">
-                <span className="brand-tag">CREATOR // DEV // MODDER</span>
-                <h1 className="brand-title text-left">Mister<br />Chedda</h1>
-              </div>
-            </section>
-
-            {/* 01. THE GAME (HERO CARD) */}
-            <section className="module theme-game hero-card">
-            <div className="module-tab">01 // THE THIRD RAIL</div>
-            <div className="module-content">
-              <div className="game-layout">
-                {/* TOP: The Visual (GIF Placeholder) - Full Width */}
-                <div className="game-visual-container">
-                  <div className="cam-overlay">● REC [00:14:02]</div>
-                  <div className="cam-corners"></div>
-                  <div className="game-visual-placeholder">
-                    [ GAMEPLAY<br />GIF / VIDEO<br />LOOP ]
-                  </div>
-                </div>
-
-                {/* BOTTOM: Text Info */}
-                <div className="game-info">
-                  <span className="game-badge">
-                    ⚠️ EARLY ACCESS ALPHA
-                  </span>
-                  <h2 className="hero-title">THE THIRD RAIL</h2>
-                  <h3 className="hero-tagline">&ldquo;Don&apos;t let them hear you breathe.&rdquo;</h3>
-                  
-                  <p className="game-description">
-                    A cooperative horror extraction shooter. Use your LIDAR scanner to navigate the darkness, but beware—the monsters track sound, including your microphone input.
-                  </p>
-
-                  <div className="devlog-notes">
-                    <strong>Latest Devlog Notes:</strong>
-                    <ul>
-                      <li>Implemented microphone proximity triggers.</li>
-                      <li>New lighting engine for &apos;The Sewers&apos;.</li>
-                      <li>Fixed T-Pose bug on death animation.</li>
-                    </ul>
-                  </div>
-
-                  <div className="btn-group">
-                    <Link href="/blog" className="btn">View Devlogs</Link>
-                    <a href="#" className="btn btn-outline">Wishlist on Steam</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </section>
-          </div>
-
-          {/* 02 & 03: MODS AND VIDEOS */}
-          <div className="split-row">
-            {/* MODS */}
-            <section className="module theme-mods">
-              <div className="module-tab">02 // MOD DEPOT</div>
-              <div className="module-content">
-                <h3 className="section-title">FILE ARCHIVE</h3>
-                <p className="section-subtitle">Cyberpunk 2077, Lethal Company, and other experiments.</p>
-                
-                <ul className="mod-list">
-                  <li className="mod-item">
-                    <span>CP2077: Responsive NPCs</span>
-                    <a href="https://www.nexusmods.com/cyberpunk2077/mods/14800" target="_blank" rel="noopener noreferrer" className="mod-link">[DOWNLOAD]</a>
-                  </li>
-                  <li className="mod-item">
-                    <span>CP2077: Responsive V</span>
-                    <a href="https://www.nexusmods.com/cyberpunk2077/mods/22694" target="_blank" rel="noopener noreferrer" className="mod-link">[DOWNLOAD]</a>
-                  </li>
-                  <li className="mod-item">
-                    <span>CP2077: Nitrous</span>
-                    <a href="https://www.nexusmods.com/cyberpunk2077/mods/20675" target="_blank" rel="noopener noreferrer" className="mod-link">[DOWNLOAD]</a>
-                  </li>
-                </ul>
-                <Link href="/about" className="btn btn-outline btn-full">VIEW ALL MODS</Link>
-              </div>
-            </section>
-
-            {/* VIDEOS */}
-            <section className="module theme-video">
-              <div className="module-tab">03 // BROADCAST</div>
-              <div className="module-content">
-                <h3 className="section-title">LATEST UPLOAD</h3>
-                
-                <div className="video-thumb">▶</div>
-                
-                <h4 className="video-title">How I broke the physics engine</h4>
-                <p className="video-description">A deep dive into the ragdoll mechanics of The Third Rail.</p>
-                
-                <a href="#" className="btn btn-video">WATCH CHANNEL</a>
-              </div>
-            </section>
-          </div>
+      {/* VERTICAL STACK LAYOUT */}
+      <div className="workspace-stack">
+        
+        {/* FLOATING SOCIAL ICONS */}
+        <div className="social-icons">
+          <a href="https://discord.gg/CtTaVSyD7g" target="_blank" rel="noopener noreferrer" className="social-icon social-discord" aria-label="Discord">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/@Mister.Chedda" target="_blank" rel="noopener noreferrer" className="social-icon social-youtube" aria-label="YouTube">
+            <Youtube size={20} />
+          </a>
+          <a href="https://instagram.com/m.r.chedda" target="_blank" rel="noopener noreferrer" className="social-icon social-instagram" aria-label="Instagram">
+            <Instagram size={20} />
+          </a>
         </div>
 
-        {/* RIGHT COLUMN (SIDEBAR) */}
-        <aside className="right-col">
-          <section className="module theme-comm">
-            <div className="module-tab">04 // COMMUNITY</div>
-            <div className="module-content">
-              <div className="discord-box">
-                <h3 className="discord-title">THE CHEESE FACTORY</h3>
-                <p className="discord-subtitle">Official Community Server</p>
-                <div className="discord-online">● 1,204 Online</div>
-              </div>
-              <a href="#" className="btn btn-comm btn-full">JOIN DISCORD</a>
+        {/* BRAND CARD - Top, compact */}
+        <section className="module theme-brand brand-compact">
+          <div className="module-content brand-card-content">
+            <span className="brand-tag">INDIE GAME DEV</span>
+            <h1 className="brand-title">MisterChedda</h1>
+          </div>
+        </section>
 
-              <hr className="divider" />
-
-              <h3 className="poll-title">COMMUNITY VOTE</h3>
-              <p className="poll-subtitle">What should I prioritize next?</p>
-
-              <div className="poll-option">
-                <div className="poll-header">
-                  <span>VR Support</span>
-                  <span>65%</span>
-                </div>
-                <div className="poll-bar">
-                  <div className="poll-fill" style={{ width: '65%' }}></div>
-                </div>
-              </div>
-
-              <div className="poll-option">
-                <div className="poll-header">
-                  <span>New Map: Sewers</span>
-                  <span>25%</span>
-                </div>
-                <div className="poll-bar">
-                  <div className="poll-fill poll-fill-medium" style={{ width: '25%' }}></div>
-                </div>
+        {/* STEALGULLS - Main hero */}
+        <section className="module theme-game">
+          <div className="module-tab game-tab">01 // STEALGULLS</div>
+          <div className="module-content">
+            <div className="game-layout">
+              {/* Video */}
+              <div className="game-visual-container">
+                {/* <div className="cam-overlay">● REC [00:14:02]</div> */}
+                <div className="cam-corners"></div>
+                <video 
+                  className="game-video" 
+                  src="https://media.stealgulls.com/stealgulls_01b.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                />
               </div>
 
-              <div className="poll-option">
-                <div className="poll-header">
-                  <span>Vehicle Physics</span>
-                  <span>10%</span>
-                </div>
-                <div className="poll-bar">
-                  <div className="poll-fill poll-fill-low" style={{ width: '10%' }}></div>
+              {/* Text Info */}
+              <div className="game-info">
+                {/* <span className="game-badge">
+                  🦅 COMING SOON
+                </span> */}
+                <h2 className="hero-title">STEALGULLS</h2>
+                <h3 className="hero-tagline">Mine. Mine. Mine.</h3>
+                
+                <p className="game-description">
+                  A co-op beach chaos game where you and your friends are seagulls on a mission to terrorize beachgoers and steal their snacks. Balance your own endless, ravenous hunger against the collective goals of the nest.
+                </p>
+
+                {/* Primary CTA - Steam Wishlist */}
+                <a href="https://store.steampowered.com/app/4249340/Stealgulls/" target="_blank" rel="noopener noreferrer" className="btn btn-steam btn-steam-lg">
+                  {/* <svg viewBox="0 0 24 24" fill="currentColor" className="steam-icon"> */}
+<svg width="24" height="24" viewBox="0 0 103 103" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M60.0307 32.6799C58.968 34.2665 58.4 36.1465 58.4 38.0532L58.3427 38.0266C58.3387 39.3066 58.5893 40.5733 59.0773 41.76C59.5667 42.9333 60.284 44.0132 61.188 44.9066C62.0933 45.8132 63.168 46.5199 64.3493 47.0132C65.532 47.4932 66.7987 47.7333 68.076 47.7333C69.9893 47.7333 71.86 47.1599 73.4507 46.1066C75.0427 45.0399 76.2827 43.52 77.0147 41.76C77.7467 39.9866 77.9387 38.0399 77.5653 36.1732C77.192 34.2932 76.2707 32.5732 74.9173 31.2132C73.564 29.8665 71.84 28.9333 69.9627 28.56C68.0867 28.1866 66.1413 28.3865 64.3733 29.1199C62.6053 29.8532 61.0933 31.0932 60.0307 32.6799ZM78.7707 30.8933C80.1853 33.0133 80.94 35.5065 80.9373 38.0532C80.932 41.4665 79.5733 44.7332 77.16 47.1465C74.7467 49.5599 71.476 50.9199 68.064 50.9333C65.5147 50.9333 63.0213 50.1733 60.9013 48.76C58.78 47.3466 57.1267 45.3332 56.1507 42.9865C55.1733 40.6265 54.9173 38.0399 55.4147 35.5333C55.9107 33.0266 57.1387 30.7333 58.9413 28.9333C60.744 27.1333 63.0413 25.9066 65.5413 25.3999C68.0427 24.9066 70.6333 25.1599 72.9893 26.1465C75.344 27.1199 77.356 28.7733 78.7707 30.8933ZM32.132 77.7865L25.828 75.1865C26.7413 77.0799 28.1907 78.6799 29.996 79.7732C31.8013 80.8666 33.8867 81.4132 35.9973 81.3465C38.108 81.2799 40.1533 80.5999 41.8827 79.3865C43.6107 78.1732 44.9507 76.4799 45.736 74.5199C46.5213 72.5599 46.72 70.4132 46.3067 68.3465C45.8933 66.2665 44.8853 64.3599 43.408 62.8532C41.9307 61.3465 40.0453 60.3065 37.9827 59.8532C35.9213 59.3865 33.7707 59.5466 31.796 60.2933L38.296 62.9865C40.26 63.7999 41.8187 65.3599 42.6293 67.3333C43.4387 69.2933 43.436 71.5066 42.6173 73.4666C41.8 75.4266 40.236 76.9866 38.2693 77.7999C36.3027 78.6133 34.0947 78.5999 32.132 77.7865ZM51.088 -6.86646e-05C38.2067 -6.86646e-05 25.7973 4.85326 16.3307 13.5999C6.864 22.3333 1.03333 34.3065 0 47.1465L27.4733 58.5199C29.8773 56.8665 32.7267 55.9865 35.6427 55.9865H36.4533L48.6667 38.2933V38.0266C48.68 34.2133 49.8267 30.4799 51.96 27.3066C54.0933 24.1332 57.1173 21.6665 60.6533 20.2132C64.188 18.7599 68.0747 18.3865 71.8213 19.1465C75.568 19.8932 79.008 21.7465 81.7053 24.4532C84.4027 27.1599 86.2373 30.6 86.9787 34.36C87.7187 38.1066 87.332 41.9865 85.8667 45.5199C84.4 49.0532 81.9213 52.0665 78.7427 54.1865C75.564 56.3065 71.828 57.4399 68.0053 57.4399H67.5653L50.184 69.8799V70.56C50.1933 74.16 48.86 77.6399 46.444 80.3199C44.028 82.9865 40.7013 84.6666 37.1147 85.0266C33.528 85.3866 29.936 84.3999 27.04 82.2532C24.144 80.1065 22.1507 76.96 21.448 73.4266L1.80801 65.3066C4.40667 74.4799 9.51467 82.7599 16.5573 89.1865C23.5987 95.6132 32.2947 99.9599 41.668 101.72C51.0413 103.48 60.72 102.587 69.6147 99.1465C78.5107 95.7065 86.2693 89.8532 92.0213 82.2532C97.772 74.6399 101.287 65.5865 102.171 56.0799C103.053 46.5865 101.271 37.0266 97.0213 28.4933C92.772 19.96 86.2253 12.7732 78.116 7.74654C70.008 2.73321 60.66 0.066597 51.1227 0.066597L51.088 -6.86646e-05Z" fill="white"/>
+</svg>
+
+                  {/* </svg> */}
+                  <span>WISHLIST ON STEAM</span>
+                  <span className="btn-arrow-icon">→</span>
+                </a>
+                
+                {/* Secondary CTAs */}
+                <div className="btn-group-secondary">
+                  <a href="https://discord.gg/CtTaVSyD7g" target="_blank" rel="noopener noreferrer" className="btn btn-discord btn-sm">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                    </svg>
+                    Join Discord
+                  </a>
+                  <Link href="/blog" className="btn btn-outline btn-sm">View Devlogs</Link>
                 </div>
               </div>
             </div>
-          </section>
-        </aside>
+          </div>
+        </section>
+
+        {/* MODS */}
+        <section className="module theme-mods">
+          <div className="module-tab">02 // MODS</div>
+          <div className="module-content">
+            <h3 className="section-title-lg">MODS</h3>
+            <p className="section-subtitle">View all of my mods for other games on Nexusmods</p>
+            <a href="https://next.nexusmods.com/profile/MisterChedda/mods" target="_blank" rel="noopener noreferrer" className="btn btn-arrow">
+              <svg viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.31581 34.1049C9.18989 34.1049 9.04297 34.1049 8.91705 34.0839C8.60223 34.042 8.30841 33.979 7.9726 33.8741C7.38495 33.6852 6.88125 33.4123 6.52446 33.2025C5.72692 32.7407 4.90841 32.1741 4.04791 31.4605C3.67013 31.1457 3.29236 30.8099 2.93557 30.4741L2.64174 30.1802C2.43186 29.9914 2.24297 29.7815 2.09606 29.5506C1.82322 29.1309 1.59236 28.5852 1.57137 27.8716C1.55038 27.6407 1.52939 27.4099 1.52939 27.158C1.52939 26.6543 1.55038 26.1086 1.63433 25.584C1.78125 24.4926 2.13804 23.5272 2.41087 22.7926C2.43186 22.7296 2.45285 22.6667 2.47384 22.6037C2.38989 22.4148 2.32692 22.2049 2.24297 21.9951C1.8652 20.9037 1.61334 19.6864 1.48742 18.4691C1.36149 17.1889 1.40347 15.8877 1.59236 14.6074C1.63433 14.3346 1.67631 14.0617 1.73927 13.8099C1.23557 13.0753 0.605937 12.0259 0.207171 10.8086V10.7877C0.123221 10.5358 -0.086656 9.90617 0.0392699 9.10864C0.0812453 8.81481 0.144208 8.52099 0.249147 8.20617C0.438035 7.61852 0.710875 7.1358 0.920751 6.77901C1.38248 5.98148 1.94915 5.18395 2.64174 4.32346C2.95655 3.94568 3.27137 3.5679 3.60717 3.2321L3.901 2.93827C4.04791 2.77037 4.21581 2.62346 4.4047 2.49753C4.82446 2.18272 5.41211 1.90988 6.20964 1.88889C6.46149 1.8679 6.73433 1.84691 7.00717 1.84691H7.02816C7.55285 1.84691 8.11952 1.88889 8.6652 1.97284C9.5047 2.09877 10.2603 2.32963 10.9319 2.58148C11.3726 2.39259 11.8343 2.22469 12.317 2.05679C13.4504 1.67901 14.6677 1.42716 15.8849 1.34321C17.1652 1.23827 18.4664 1.30123 19.7047 1.51111C19.9985 1.55309 20.2924 1.61605 20.5862 1.67901C21.5726 1.00741 22.4751 0.524691 23.4195 0.230864H23.4405C23.6504 0.146914 24.1121 0 24.7208 0C24.8467 0 24.9936 0 25.1195 0.0209877C25.4343 0.062963 25.7282 0.125926 26.064 0.230864C26.6516 0.419753 27.1553 0.692593 27.5121 0.902469C28.3096 1.3642 29.1282 1.93086 29.9886 2.64444C30.3664 2.95926 30.7442 3.29506 31.101 3.63086L31.3948 3.92469C31.5417 4.05062 31.6887 4.19753 31.7936 4.36543C32.1714 4.84815 32.4652 5.54074 32.4862 6.50617C32.5072 6.84198 32.5072 7.19877 32.4862 7.55556C32.4442 8.3321 32.3393 9.06667 32.1504 9.73827C32.0035 10.242 31.8356 10.7457 31.6467 11.2494C32.0245 12.1938 32.2973 13.1593 32.4862 14.1457C32.864 16.2235 32.822 18.3642 32.3603 20.421C32.6331 20.8198 32.8849 21.1975 33.0948 21.5753C33.4516 22.2049 33.7454 22.8556 33.9553 23.5272C34.0393 23.779 34.2282 24.4086 34.1022 25.2481C34.0603 25.542 33.9763 25.8148 33.8714 26.1296C33.4936 27.2 32.9059 28.0815 32.3812 28.816C31.8146 29.6136 31.164 30.3901 30.4924 31.1037L30.2405 31.3556C30.0936 31.5235 29.9257 31.6704 29.7368 31.8173C29.317 32.1321 28.7294 32.3839 27.9319 32.4259C27.68 32.4469 27.4072 32.4679 27.1343 32.4679H27.1133C26.5467 32.4679 25.98 32.4259 25.3924 32.321C24.4479 32.1741 23.6084 31.8802 22.8528 31.5864C22.4541 31.7543 22.0343 31.9012 21.6356 32.0272C20.4603 32.384 19.222 32.6148 17.9837 32.6778C16.7035 32.7617 15.4022 32.6568 14.143 32.4259C13.9961 32.4049 13.8282 32.363 13.6812 32.342C12.5899 33.1185 11.6245 33.6222 10.617 33.958H10.5961C10.3862 33.937 9.92446 34.1049 9.31581 34.1049ZM5.16026 28.1444L7.38495 28.921C7.57384 28.3753 7.59483 27.7877 7.4689 27.242C7.4689 27.284 7.4689 27.3469 7.48989 27.3889C7.48989 27.4519 7.51087 27.5358 7.51087 27.6198C7.48989 27.2 7.34297 26.6543 6.9652 26.1506C6.81828 25.9617 6.65038 25.7938 6.46149 25.6469L6.56643 25.7309L6.75532 25.9198C6.58742 25.7519 6.39853 25.5839 6.18865 25.437L5.16026 28.1444ZM25.959 27.158C25.7911 27.3259 25.6232 27.4938 25.4763 27.7247L27.9738 28.6901V26.3605C27.743 26.3605 27.5121 26.3815 27.3022 26.4444C27.3442 26.4444 27.3862 26.4444 27.4282 26.4444C27.4911 26.4444 27.5751 26.4235 27.659 26.4235C27.2812 26.4444 26.7775 26.5704 26.3158 26.8642C26.064 27.0321 25.8541 27.221 25.6652 27.4728L25.7491 27.3679L25.959 27.158ZM7.51087 26.6123C7.61581 26.6963 7.72075 26.7802 7.82569 26.8852C8.37137 27.3469 8.87507 27.7037 9.3368 27.9765C9.63063 27.8296 9.96643 27.6198 10.3232 27.3469C10.4282 27.284 10.5121 27.2 10.617 27.116C10.68 27.0741 10.722 27.0111 10.7849 26.9691C10.8059 26.9481 10.8479 26.9062 10.8689 26.8852L12.1701 25.563L13.9331 26.1716C13.9961 26.1926 14.059 26.2136 14.101 26.2346C14.4788 26.3605 14.8566 26.4444 15.2343 26.5284C16.0109 26.6753 16.8294 26.7383 17.6269 26.6753C18.3825 26.6333 19.159 26.4864 19.8726 26.2765C20.2294 26.1716 20.5862 26.0457 20.922 25.8778C21.0899 25.8148 21.2578 25.7309 21.4047 25.6469C21.8245 25.437 22.3072 25.3111 22.7899 25.3111C23.5454 25.3111 24.1121 25.5839 24.3849 25.7309C24.4689 25.7728 24.5528 25.8148 24.6578 25.8358C25.1825 26.0457 25.7911 26.2975 26.3368 26.3815C26.4207 26.4025 26.5257 26.4025 26.6096 26.4235C26.9245 26.0667 27.2183 25.6889 27.4911 25.3111C27.659 25.0802 27.8269 24.8494 27.9738 24.6185C27.9528 24.5765 27.9319 24.5346 27.8899 24.4716C27.743 24.2198 27.5751 23.9679 27.3652 23.6531C27.3022 23.5481 27.2183 23.4642 27.1343 23.3593C27.0924 23.3173 27.0714 23.2753 27.0294 23.2333C26.1689 22.3938 25.8751 21.1975 26.2738 20.0642C26.2948 20.0012 26.3158 19.9383 26.3368 19.8963C26.8195 18.3852 26.9035 16.7691 26.6306 15.216C26.4837 14.4815 26.2738 13.7469 25.959 13.0543C25.938 12.9914 25.8961 12.9284 25.8751 12.8654C25.1825 11.5852 25.4763 10.4938 25.7282 9.96914C25.8331 9.75926 25.917 9.5284 26.001 9.31852C26.1689 8.91975 26.2948 8.5 26.4208 8.12222C26.4627 7.93333 26.5047 7.74444 26.5257 7.51358C26.4208 7.42963 26.3158 7.34568 26.2109 7.24074C25.6442 6.77901 25.1615 6.42222 24.6998 6.14938C24.4059 6.31728 24.0701 6.52716 23.6924 6.77901C23.5874 6.86296 23.4825 6.94691 23.3775 7.03086C23.3566 7.05185 23.3146 7.07284 23.2936 7.11481C22.7269 7.66049 21.9714 7.95432 21.1948 7.95432C20.817 7.95432 20.4603 7.89136 20.1035 7.74444C20.0195 7.72346 19.9356 7.68148 19.8516 7.66049C19.4738 7.55556 19.0961 7.45062 18.6973 7.38765C17.9207 7.26173 17.1022 7.21975 16.3047 7.28272C15.5491 7.34568 14.7936 7.49259 14.08 7.72346C13.7232 7.82839 13.3874 7.97531 13.0516 8.12222C12.8837 8.18519 12.7368 8.26914 12.5689 8.35309L12.4849 8.39506C12.0442 8.64691 11.5195 8.77284 11.0158 8.77284C10.5541 8.77284 10.0924 8.6679 9.65162 8.45802C9.54668 8.41605 9.46273 8.37407 9.35779 8.3321C8.85408 8.12222 8.24544 7.89136 7.72075 7.82839C7.6368 7.80741 7.55285 7.80741 7.48989 7.78642C7.40594 7.89136 7.32199 7.9963 7.23804 8.08025C6.77631 8.64691 6.41952 9.12963 6.14668 9.61235C6.29359 9.90617 6.50347 10.221 6.75532 10.5988C6.81828 10.7037 6.90223 10.8086 6.98618 10.8926C7.02816 10.9556 7.09112 10.9975 7.1331 11.0605L8.35038 12.3407L7.82569 14.0198C7.78371 14.1247 7.76273 14.2296 7.72075 14.3346C7.61581 14.7123 7.53186 15.1111 7.4689 15.5099C7.34297 16.3074 7.32199 17.1049 7.40594 17.9235C7.4689 18.679 7.6368 19.4346 7.88865 20.1481C8.01458 20.5049 8.16149 20.8407 8.30841 21.1765C8.32939 21.2185 8.35038 21.2605 8.37137 21.3025C8.81211 22.2049 8.81211 23.2123 8.35038 24.1148C8.30841 24.1988 8.26643 24.2827 8.24544 24.3667C8.16149 24.5765 8.05655 24.7864 7.9726 24.9963C7.8047 25.458 7.59483 26.0037 7.53186 26.4864C7.53186 26.5074 7.51087 26.5704 7.51087 26.6123ZM27.2603 8.14321C27.4282 8.31111 27.617 8.47901 27.8479 8.64691L28.8763 5.93951L26.6516 5.16296C26.4627 5.70864 26.4417 6.2963 26.5677 6.84197C26.5677 6.82099 26.5677 6.8 26.5677 6.77901C26.5677 6.71605 26.5677 6.61111 26.5677 6.50617V6.48518C26.5677 6.8 26.6726 7.32469 27.0084 7.82839C27.1763 8.05926 27.3652 8.26914 27.5961 8.45802L27.4911 8.37407L27.2603 8.14321ZM6.14668 5.51975V7.84938C6.37754 7.84938 6.60841 7.82839 6.81828 7.76543C6.77631 7.76543 6.73433 7.76543 6.69236 7.76543C6.62939 7.76543 6.54544 7.78642 6.46149 7.78642C6.83927 7.76543 7.34297 7.63951 7.8047 7.34568C8.05655 7.17778 8.26643 6.98889 8.45532 6.73704L8.37137 6.84197L8.18248 7.05185C8.35038 6.88395 8.51828 6.69506 8.6652 6.48518L6.14668 5.51975Z" fill="black"/>
+<path d="M11.8132 18.553L11.9601 24.4925L10.491 23.2962C8.85395 25.9616 8.32926 28.5431 9.1058 30.453L9.37864 31.1246L8.70704 30.8308C7.17494 30.1591 5.78975 29.2147 4.63543 27.9974L4.57247 27.9345L4.55148 27.8295C4.46753 27.095 4.50951 26.2974 4.6984 25.4789V25.4579C4.97124 24.4295 5.37 23.4011 5.8737 22.3727C6.18852 21.7221 6.5663 21.0715 6.98605 20.4419L5.7058 19.3925L11.8132 18.553Z" fill="#F97316"/>
+<path d="M22.2231 15.5518L22.0762 9.61232L23.5453 10.8086C25.1823 8.14319 25.707 5.56171 24.9305 3.65183L24.6577 2.98022L25.3293 3.27405C26.8614 3.94566 28.2465 4.8901 29.4009 6.10739L29.4638 6.17035L29.4848 6.27529C29.5688 7.00985 29.5268 7.80738 29.3379 8.6259V8.64689C29.0651 9.67529 28.6663 10.7037 28.1626 11.7321C27.8478 12.3827 27.47 13.0333 27.0502 13.6629L28.3305 14.7123L22.2231 15.5518Z" fill="#F97316"/>
+<path d="M18.5713 22.121L24.5108 21.9741L23.3145 23.4433C25.9799 25.0803 28.5614 25.605 30.4713 24.8284L31.1429 24.5556L30.8491 25.2272C30.1775 26.7593 29.233 28.1445 28.0157 29.2988L27.9528 29.3618L27.8478 29.3828C27.1133 29.4667 26.3157 29.4247 25.4972 29.2359H25.4762C24.4478 28.963 23.4194 28.5642 22.391 28.0605C21.7404 27.7457 21.0898 27.3679 20.4602 26.9482L19.4108 28.2284L18.5713 22.121Z" fill="#F97316"/>
+<path d="M15.5492 12.0888L9.60965 12.2358L10.8059 10.7666C8.14051 9.12959 5.55903 8.60489 3.64915 9.38144L2.99854 9.65428L3.29236 8.98267C3.96397 7.45057 4.90841 6.06539 6.1257 4.91107L6.18866 4.84811L6.2936 4.82712C7.02816 4.74317 7.8257 4.78514 8.64421 4.97403H8.6652C9.6936 5.24687 10.722 5.64564 11.7504 6.14934C12.401 6.46415 13.0516 6.84193 13.6813 7.26168L14.7306 5.98144L15.5492 12.0888Z" fill="#F97316"/>
+<path d="M17.0813 29.6556C24.094 29.6556 29.7788 23.9707 29.7788 16.958C29.7788 9.94538 24.094 4.2605 17.0813 4.2605C10.0687 4.2605 4.38379 9.94538 4.38379 16.958C4.38379 23.9707 10.0687 29.6556 17.0813 29.6556Z" fill="#FB923C"/>
+<path d="M12.443 12.4877C11.7084 12.1518 11.1627 11.816 10.617 11.4173C9.77753 10.8296 9.00099 10.179 8.35037 9.48642C6.75531 7.87037 5.9158 6.21234 6.14667 4.84814L5.66395 5.37284C4.50963 6.59012 2.97753 8.73086 2.95654 9.65432C2.97753 9.75926 2.97753 9.75926 2.97753 9.75926C3.18741 10.4728 3.52321 11.1864 4.00593 11.879V11.9C4.63556 12.9074 5.87383 14.5654 10.2812 16.4963L9.50469 17.9654L15.4442 16.3704L13.3244 10.8086L12.443 12.4877Z" fill="#F4F4F5"/>
+<path d="M21.6775 21.7222C22.4121 22.058 22.9578 22.3938 23.5034 22.7925C24.3429 23.3802 25.1195 24.0308 25.7701 24.7234C27.3652 26.3395 28.2047 27.9975 27.9738 29.3617L28.4565 28.858C29.6108 27.6407 31.1429 25.4999 31.1639 24.5765C31.1429 24.4716 31.1429 24.4716 31.1429 24.4716C30.9331 23.758 30.5973 23.0444 30.1145 22.3518V22.3308C29.4849 21.3234 28.2466 19.6654 23.8392 17.7345L24.6158 16.2654L18.6763 17.8604L20.817 23.3592L21.6775 21.7222Z" fill="#F4F4F5"/>
+<path d="M21.8245 12.4456C22.1603 11.7111 22.4961 11.1654 22.8948 10.6197C23.4825 9.78022 24.1331 9.00367 24.8257 8.35306C26.4418 6.75799 28.0998 5.91849 29.464 6.14935L28.9603 5.66664C27.743 4.51231 25.6022 2.98022 24.6788 2.95923C24.5738 2.98022 24.5738 2.98022 24.5738 2.98022C23.8603 3.19009 23.1467 3.5259 22.4541 4.00861H22.4331C21.4257 4.63824 19.7677 5.87651 17.8368 10.2839L16.3677 9.50738L17.9627 15.4469L23.5035 13.3481L21.8245 12.4456Z" fill="#F4F4F5"/>
+<path d="M12.2123 21.6592C11.8765 22.3938 11.5407 22.9394 11.1419 23.4851C10.5542 24.3246 9.90362 25.1012 9.21103 25.7518C7.59498 27.3468 5.93695 28.1864 4.57275 27.9555L5.07646 28.4382C6.29374 29.5925 8.43448 31.1246 9.35794 31.1456C9.46288 31.1246 9.46288 31.1246 9.46288 31.1246C10.1765 30.9147 10.89 30.5789 11.5826 30.0962H11.6036C12.611 29.4666 14.269 28.2283 16.1999 23.8209L17.669 24.5975L16.074 18.658L10.5542 20.7567L12.2123 21.6592Z" fill="#F4F4F5"/>
+</svg>
+
+              <span>VISIT NEXUSMODS</span>
+              <span className="btn-arrow-icon">→</span>
+            </a>
+            <div className="nexus-profile-img">
+              <Image src="/images/nexusmods_profile.png" alt="MisterChedda on Nexusmods - Verified Mod Author, 2.7M Unique Downloads" fill className="object-cover" />
+            </div>
+          </div>
+        </section>
+
+        {/* MORE */}
+        <section className="module theme-comm">
+          <div className="module-tab">03 // MORE</div>
+          <div className="module-content">
+            <div className="more-stack">
+              {/* WRITE UPS */}
+              <div className="more-item">
+                <h3 className="section-title-lg">WRITE UPS</h3>
+                <p className="section-subtitle">Dev notes and deep dives</p>
+                <Link href="/blog" className="btn btn-arrow">
+                  <span>READ BLOG</span>
+                  <span className="btn-arrow-icon">→</span>
+                </Link>
+              </div>
+
+              {/* SOCIALS */}
+              <div className="more-item">
+                <h3 className="section-title-lg">CONNECT</h3>
+                <p className="section-subtitle">Follow along on socials</p>
+                <div className="social-links">
+                  <a href="https://discord.gg/CtTaVSyD7g" target="_blank" rel="noopener noreferrer" className="social-link-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.36-.698.772-1.362 1.225-1.993a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.12-.094.246-.198.373-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.094.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                    </svg>
+                  </a>
+                  <a href="https://www.youtube.com/@Mister.Chedda" target="_blank" rel="noopener noreferrer" className="social-link-item">
+                    <Youtube size={20} />
+                    {/* <span>YouTube</span> */}
+                  </a>
+                  <a href="https://x.com/misterchedda" target="_blank" rel="noopener noreferrer" className="social-link-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </a>
+                  <a href="https://instagram.com/m.r.chedda" target="_blank" rel="noopener noreferrer" className="social-link-item">
+                    <Instagram size={20} />
+                  </a>
+                  <a href="https://tiktok.com/@mister_chedda" target="_blank" rel="noopener noreferrer" className="social-link-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
     </div>
   )

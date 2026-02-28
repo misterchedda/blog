@@ -187,13 +187,9 @@ export default function MediaPage() {
   return (
     <div className="internal-page">
       <Navbar />
-      <section>
-      <h1 className="mb-2 text-2xl font-semibold tracking-tighter">
-        Media Mentions
-      </h1>
-      <p className="mb-8 text-neutral-600 dark:text-neutral-400">
-        Coverage of my mods across gaming news sites
-      </p>
+      <section className="content-section">
+        <h1 className="page-title">Media Mentions</h1>
+        <p className="page-subtitle">Coverage of my mods across gaming news sites</p>
 
       <div className="space-y-4">
         {mediaMentions.map((mention, index) => (

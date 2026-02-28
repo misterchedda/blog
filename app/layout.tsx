@@ -10,13 +10,13 @@ import { baseUrl } from './sitemap'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "MisterChedda | Dev Workspace",
+    default: "MisterChedda",
     template: '%s | MisterChedda',
   },
-  description: "Creator, developer, and modder. Building The Third Rail - a cooperative horror extraction shooter.",
+  description: "I make games and mods. Building STEALGULLS - a co-op beach chaos game.",
   openGraph: {
-    title: "MisterChedda | Dev Workspace",
-    description: "Creator, developer, and modder. Building The Third Rail - a cooperative horror extraction shooter.",
+    title: "MisterChedda",
+    description: "I make games and mods. Building STEALGULLS - a co-op beach chaos game.",
     url: baseUrl,
     siteName: "MisterChedda",
     locale: 'en_US',

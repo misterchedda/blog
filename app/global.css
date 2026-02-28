@@ -8,6 +8,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Marvin';
+  src: url('/fonts/marvin.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;
@@ -31,7 +40,7 @@
   --grid-line: #e0e0e0;
   
   /* Color Coding */
-  --color-game: #ff5e00;
+  --color-game: #2bedff;
   --color-mods: #0044ff;
   --color-comm: #00a152;
   --color-vid: #7d00a3;
@@ -127,7 +136,7 @@ html {
 }
 
 .prose p {
-  @apply my-4 text-neutral-800 dark:text-neutral-200;
+  @apply my-4 text-neutral-800;
 }
 
 .prose h1 {
@@ -242,9 +251,9 @@ table {
 }
 
 /* Custom Cursors */
-* {
+/* * {
   cursor: url('/icons/cursor.png') 0 0, auto;
-}
+} */
 
 a, button, [role="button"], input[type="submit"], input[type="button"], .group, .post-outline, .post-outline *, .media-card, .media-card * {
   cursor: url('/icons/cursor_link.png') 0 0, pointer !important;
@@ -274,8 +283,369 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
 /* ===== WORKSPACE LANDING PAGE STYLES ===== */
 
 .workspace-container {
-  max-width: 95vw;
+  max-width: 800px;
   margin: 0 auto;
+  width: 100%;
+}
+
+.workspace-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Floating Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-bottom: -4rem;
+  position: relative;
+  z-index: 10;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+  border: 2px solid black;
+
+}
+
+.social-icon:hover {
+  transform: translateY(-2px);
+}
+
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Brand-colored social icons */
+.social-discord {
+  background: #5865F2;
+}
+.social-discord:hover {
+  background: #4752c4;
+}
+
+.social-youtube {
+  background: #FF0000;
+}
+.social-youtube:hover {
+  background: #cc0000;
+}
+
+.social-instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+.social-instagram:hover {
+  background: linear-gradient(45deg, #d9842e, #cf5d36, #c6233c, #b8205c, #a9167a);
+}
+
+.social-github {
+  background: #333;
+  border-color: #333;
+}
+.social-github:hover {
+  background: #555;
+}
+
+/* Site Header for Internal Pages */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--ink);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: bold;
+  font-family: var(--font-ui);
+}
+
+.back-link:hover {
+  opacity: 0.7;
+}
+
+.brand-name {
+  font-family: 'BM Hanna', var(--font-head);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+}
+
+.header-nav a:hover {
+  text-decoration: underline;
+}
+
+.header-social {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.social-icon-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.social-icon-sm:hover {
+  transform: translateY(-2px);
+}
+
+.social-icon-sm svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Header brand-colored icons */
+.social-icon-sm.social-discord {
+  background: #5865F2;
+}
+.social-icon-sm.social-discord:hover {
+  background: #4752c4;
+}
+
+.social-icon-sm.social-youtube {
+  background: #FF0000;
+}
+.social-icon-sm.social-youtube:hover {
+  background: #cc0000;
+}
+
+.social-icon-sm.social-instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+.social-icon-sm.social-instagram:hover {
+  background: linear-gradient(45deg, #d9842e, #cf5d36, #c6233c, #b8205c, #a9167a);
+}
+
+.social-icon-sm.social-github {
+  background: #333;
+}
+.social-icon-sm.social-github:hover {
+  background: #555;
+}
+
+/* Internal Page Styles */
+.internal-page {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.content-section {
+  margin-top: 1rem;
+}
+
+.page-title {
+  font-family: var(--font-head);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.page-subtitle {
+  font-family: var(--font-body);
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+/* Blog Post Styles */
+.post-title {
+  font-family: var(--font-head);
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.post-meta {
+  font-family: var(--font-ui);
+  color: #666;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.post-content {
+  font-family: var(--font-body);
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.post-content h2 {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+
+.post-content h3 {
+  font-family: var(--font-ui);
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--ink);
+}
+
+.post-content p {
+  margin-bottom: 1.5rem;
+}
+
+.post-content code {
+  background: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.post-content pre {
+  background: #1a1a1a;
+  color: #f8f8f8;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 2px solid var(--ink);
+}
+
+.post-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.post-content a {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.post-content a:hover {
+  opacity: 0.7;
+}
+
+/* About Page Styles */
+.about-intro {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  font-family: var(--font-body);
+  color: var(--ink);
+}
+
+.about-intro a {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.about-section {
+  margin-bottom: 3rem;
+}
+
+.section-heading {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.view-more-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: #666;
+  text-decoration: none;
+}
+
+.view-more-link:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* Blog Post List Styles */
+.post-list-item {
+  display: block;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border: 2px solid var(--ink);
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.2s;
+  background: white;
+}
+
+.post-list-item:hover {
+  background: var(--ink);
+  color: white;
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: translate(-2px, -2px);
+}
+
+.post-list-title {
+  font-family: var(--font-ui);
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.post-list-summary {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.gallery-tip {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.875rem;
+  color: #666;
+  font-family: var(--font-ui);
 }
 
 /* Hero Row - Brand + Game Cards */
@@ -298,6 +668,10 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
   }
 }
 
+.game-tab {
+  font-family: 'Marvin';
+}
+
 /* Brand Card */
 .theme-brand {
   border-color: var(--ink);
@@ -311,28 +685,30 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
 
 .brand-card-content {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
-  min-height: 300px;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
 }
 
-@media (min-width: 1024px) {
-  .brand-card-content {
-    min-height: 600px;
-  }
+.brand-compact {
+  margin-top: 0;
+}
+
+.brand-compact .module-content {
+  padding: 1rem 1.5rem;
 }
 
 .brand-tag {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   background: var(--ink);
   color: white;
   padding: 4px 12px;
   font-weight: bold;
   display: inline-block;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 @media (min-width: 768px) {
@@ -343,22 +719,17 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
 
 .brand-title {
   font-family: 'BM Hanna', sans-serif;
-  font-size: 3.5rem;
-  line-height: 0.8;
+  font-size: 2rem;
+  line-height: 1;
   text-transform: uppercase;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   color: var(--ink);
+  margin: 0;
 }
 
 @media (min-width: 768px) {
   .brand-title {
-    font-size: 4.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .brand-title {
-    font-size: 5rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -448,9 +819,6 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
   border-color: var(--ink);
 }
 
-.hero-card {
-  min-height: 80vh;
-}
 
 .game-layout {
   display: flex;
@@ -470,7 +838,7 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
 }
 
 .hero-title {
-  font-family: var(--font-head);
+  font-family: 'Marvin', sans-serif;
   font-size: 3rem;
   text-transform: uppercase;
   line-height: 0.9;
@@ -480,7 +848,7 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
 
 @media (min-width: 768px) {
   .hero-title {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 }
 
@@ -488,15 +856,28 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
   font-family: var(--font-body);
   margin-bottom: 1.5rem;
   color: var(--ink);
-  font-size: 1rem;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .hero-tagline {
+    font-size: 2.2rem;
+  }
 }
 
 .game-description {
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.4;
   margin-bottom: 2rem;
   font-family: var(--font-body);
-  color: var(--ink);
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .game-description {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
 }
 
 .devlog-notes {
@@ -538,6 +919,14 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
   .game-visual-placeholder {
     font-size: 3rem;
   }
+}
+
+.game-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cam-overlay {
@@ -600,8 +989,10 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
 
 .section-subtitle {
   margin-bottom: 1.5rem;
-  color: #555;
+  color: black;
   font-family: var(--font-body);
+  font-size: 1.2rem;
+  /* font-weight: bold; */
 }
 
 .mod-list {
@@ -699,12 +1090,193 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
   border-color: var(--ink);
 }
 
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 600px) {
+  .connect-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.connect-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.connect-item .section-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.connect-item .section-subtitle {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.connect-item .btn-full {
+  margin-top: auto;
+}
+
+/* More Stack (vertical layout) */
+.more-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.more-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.more-item .section-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.more-item .section-subtitle {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: black;
+}
+
+/* Large section titles */
+.section-title-lg {
+  font-family: var(--font-head);
+  font-size: 3.3rem;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+  line-height: 1;
+}
+
+@media (max-width: 480px) {
+  .section-title-lg {
+    font-size: 2.5rem;
+  }
+}
+
+/* Social links grid */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.social-link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 10px 16px;
+  background: white;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--font-ui);
+  font-weight: bold;
+  font-size: 0.875rem;
+  box-shadow: 2px 2px 0px var(--ink);
+  transition: 0.2s;
+}
+
+.social-link-item:hover {
+  background: var(--ink);
+  color: white;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+.social-link-item svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Arrow button style */
+.btn-arrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  background: white;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 12px 16px !important;
+  font-weight: bold;
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  border: 2px solid var(--ink);
+  transition: 0.2s;
+  cursor: pointer;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px !important;
+  width: auto !important;
+  max-width: none !important;
+  box-shadow: 2px 2px 0px var(--ink);
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+}
+
+.btn-arrow > * {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+.btn-arrow svg {
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+}
+
+.btn-arrow span {
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+}
+
+.btn-arrow:hover {
+  background: var(--ink);
+  color: white;
+  box-shadow: 4px 4px 0px var(--ink);
+  transform: translate(-2px, -2px);
+}
+
+.btn-arrow:hover .btn-icon-left {
+  filter: invert(1);
+}
+
+.btn-icon-left {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.btn-arrow-icon {
+  font-size: 1.25rem;
+  margin-left: auto;
+}
+
+/* Nexusmods profile image */
+.nexus-profile-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1181 / 241;
+  margin-top: 1rem;
+  border: 2px solid var(--ink);
+  overflow: hidden;
+}
+
 .discord-box {
   background: #e8f5e9;
-  padding: 1.5rem;
+  padding: 1rem;
   border: 2px solid var(--color-comm);
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
 }
 
 .discord-title {
@@ -792,25 +1364,27 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
 
 .btn {
   display: inline-block;
-  background: var(--ink);
-  color: white;
+  background: white;
+  color: var(--ink);
   text-decoration: none;
   padding: 15px 30px;
-  font-weight: bold;
-  font-family: var(--font-ui);
+  /* font-weight: bold; */
+  font-family: 'BM Hanna', sans-serif;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  border: 2px solid transparent;
+  border: 2px solid var(--ink);
   transition: 0.2s;
   cursor: pointer;
   font-size: 1rem;
   text-align: center;
+  box-shadow: 2px 2px 0px var(--ink);
 }
 
 .btn:hover {
-  background: white;
-  color: var(--ink);
-  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: white;
   box-shadow: 4px 4px 0px var(--ink);
+  transform: translate(-2px, -2px);
 }
 
 .btn-outline {
@@ -824,9 +1398,179 @@ a, button, [role="button"], input[type="submit"], input[type="button"], .group, 
   color: white;
 }
 
+.btn-steam {
+  background: #1b2838;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'BM Hanna', sans-serif;
+  /* font-size: 3rem; */
+  letter-spacing: 1px;
+  border-color: #1b2838;
+  box-shadow: 2px 2px 0px #0d1219;
+}
+
+.btn-steam:hover {
+  background: #2a475e;
+  color: white;
+  box-shadow: 4px 4px 0px #0d1219;
+}
+
+.btn-steam:hover .steam-icon {
+  fill: white;
+}
+
+.btn-discord {
+  background: white;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-discord:hover {
+  background: var(--ink);
+  color: white;
+}
+
+.btn-nexus {
+  background: #d98f40;
+  color: white;
+  border-color: #d98f40;
+}
+
+.btn-nexus:hover {
+  background: #c17a2e;
+}
+
+/* Large Steam CTA button */
+.btn-steam-lg {
+  padding: 18px 28px;
+  font-size: 1.4rem;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.btn-steam-lg .steam-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.btn-steam-lg .btn-arrow-icon {
+  margin-left: auto;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .btn-steam-lg {
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    gap: 8px;
+  }
+  
+  .btn-steam-lg .steam-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .btn-steam-lg .btn-arrow-icon {
+    font-size: 1.25rem;
+  }
+}
+
+/* Secondary button group */
+.btn-group-secondary {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Small buttons */
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+}
+
+.btn-sm svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Nexus showcase section */
+.nexus-showcase {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+  padding: 1.5rem;
+  border: 2px solid #d98f40;
+}
+
+.nexus-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.nexus-logo {
+  height: 28px;
+  width: auto;
+  filter: brightness(1.2);
+}
+
+.nexus-stats {
+  background: #d98f40;
+  color: white;
+  padding: 4px 12px;
+  font-family: var(--font-ui);
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.mod-carousel {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.mod-thumb {
+  position: relative;
+  width: calc(33.333% - 0.333rem);
+  aspect-ratio: 16 / 9;
+  border: 2px solid #444;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.mod-thumb:hover {
+  border-color: #d98f40;
+  transform: scale(1.02);
+}
+
+.nexus-showcase .section-title,
+.nexus-showcase .section-subtitle {
+  color: white;
+}
+
+.steam-icon,
+.discord-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.link-section {
+  margin-top: 0.5rem;
+}
+
 .btn-full {
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .btn-video {
